@@ -1,0 +1,68 @@
+@{
+    ViewData["Title"] = "User Infomation";
+}
+
+
+<div class="container frame">
+    <h1 class="text-center mb-4">Personal Infomation From </h1>
+
+    <form method="post" class="needs-validation" novalidate style="border: 1px solid #dee2e6; padding: 20px; border-radius: 5px;">
+        <div class="mb-3">
+        
+                <label for="fullName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="fullName" name="FullName" required>
+                <div class="invalid-feedback">
+                    Please enter the patient's full name.
+               
+            </div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="mobile" class="form-label">Mobile Number</label>
+            <input type="tel" class="form-control" id="mobile" name="mobile" required>
+            <div class="invalid-feedback">
+                Please enter a valid mobile number..
+            </div>
+        </div>
+        
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="idNumber" class="form-label">ID Number</label>
+                <input type="text" class="form-control" id="idNumber" name="IdNumber" required>
+                <div class="invalid-feedback">
+                    Please enter the patient's ID number.
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="birthDate" class="form-label">Birth Date</label>
+                <input type="date" class="form-control" id="birthDate" name="BirthDate" required>
+                <div class="invalid-feedback">
+                    Please enter a valid birth date.
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <textarea class="form-control" id="address" name="Address" rows="3" required></textarea>
+            <div class="invalid-feedback">
+                Please enter the patient's address.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" name="Email" required>
+            <div class="invalid-feedback">
+                Please enter a valid email address.
+            </div>
+        </div>
+
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
