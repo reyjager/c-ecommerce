@@ -19,32 +19,35 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>#</th>
+                <th>User ID</th>
                 <th>Username</th>
                 <th>Email</th>
                 <th>Mobile</th>
                 <th>Role</th>
-                <th>Created</th>
-                <th>Updated</th>
+                @* <th>Created</th>
+                <th>Updated</th> *@
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var user in Model)
             {
-                <tr>
+                <tr onclick="window.location.href='/Home/UserInfo/@user.Id'" style="cursor: pointer;" class="@(Model.ToList().IndexOf(user) % 2 == 0 ? "table-light" : "table-secondary")">
                     <td>@user.Id</td>
+                    <td>@user.UserId</td>
                     <td>@user.UserName</td>
                     <td>@user.Email</td>
                     <td>@user.Mobile</td>
                     <td>@user.Roles</td>
-                    <td>@user.DateCreated.ToString("yyyy-MM-dd HH:mm")</td>
-                    <td>@(user.DateUpdated.HasValue ? user.DateUpdated.Value.ToString("yyyy-MM-dd HH:mm") : "-")</td>
+                    @* <td>@user.DateCreated.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@(user.DateUpdated.HasValue ? user.DateUpdated.Value.ToString("yyyy-MM-dd HH:mm") : "-")</td> *@
                     <td>
                         <a href="/Home/Edit/@user.Id" class="btn btn-primary">Edit</a>
                         <a href="/Home/Delete/@user.Id" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
+            
             }
         </tbody>
     </table>

@@ -117,7 +117,6 @@
 /Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
 /Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/scopedcss/bundle/MyMvcProject.styles.css
 /Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/scopedcss/projectbundle/MyMvcProject.bundle.scp.css
-/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/2bd9n5whnu-b9sayid5wm.gz
 /Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/v4m5nx68xo-61n19gt1b8.gz
 /Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/gnvvb3vjk5-xtxxf3hu2r.gz
 /Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/dn842m5xwg-bqjiyaj88i.gz
@@ -196,3 +195,4 @@
 /Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/ref/MyMvcProject.dll
 /Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/fxuyu4emzl-kgflhlizw7.gz
 /Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/dxwn2pzeou-kgflhlizw7.gz
+/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/2bd9n5whnu-o8l7i9cx9c.gz

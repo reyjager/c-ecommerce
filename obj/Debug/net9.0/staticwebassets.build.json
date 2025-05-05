@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4onT54b1EZw6uDPTEug6tcJprTWEaa4EwlP+PSh6FO8=",
+  "Hash": "+2sybddL89KtL2JKDNid2hUhHoRdNPEzZil1KSf5Qjk=",
   "Source": "MyMvcProject",
   "BasePath": "_content/MyMvcProject",
   "Mode": "Default",
@@ -122,12 +122,12 @@
       "OriginalItemSpec": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map"
     },
     {
-      "Identity": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/2bd9n5whnu-b9sayid5wm.gz",
+      "Identity": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/2bd9n5whnu-o8l7i9cx9c.gz",
       "SourceId": "MyMvcProject",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/",
       "BasePath": "_content/MyMvcProject",
-      "RelativePath": "css/site#[.{fingerprint=b9sayid5wm}]?.css.gz",
+      "RelativePath": "css/site#[.{fingerprint=o8l7i9cx9c}]?.css.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -136,8 +136,8 @@
       "RelatedAsset": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/css/site.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "pw5l7j5n1s",
-      "Integrity": "KbRAtTdCZlkPQMEP8615MCQRMWQsaAwQYpxvPAoetmA=",
+      "Fingerprint": "g4k34tx9sh",
+      "Integrity": "oPDe+uOL7w9ybl9Q5G/PNaIbj/svzAjxFSJERkN9Dlg=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/css/site.css"
@@ -1417,8 +1417,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "b9sayid5wm",
-      "Integrity": "j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg=",
+      "Fingerprint": "o8l7i9cx9c",
+      "Integrity": "SH2G2Z6QlV17toH4fFNqFPMnTiX+NMHcCXu4JrVVDH4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/site.css"
@@ -2728,13 +2728,13 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/site.b9sayid5wm.css",
-      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/2bd9n5whnu-b9sayid5wm.gz",
+      "Route": "css/site.css",
+      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/2bd9n5whnu-o8l7i9cx9c.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.003134796238"
+          "Quality": "0.003003003003"
         }
       ],
       "ResponseHeaders": [
@@ -2744,19 +2744,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "318"
+          "Value": "332"
         },
         {
           "Name": "ETag",
-          "Value": "\"KbRAtTdCZlkPQMEP8615MCQRMWQsaAwQYpxvPAoetmA=\""
+          "Value": "\"oPDe+uOL7w9ybl9Q5G/PNaIbj/svzAjxFSJERkN9Dlg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 04 May 2025 13:58:23 GMT"
+          "Value": "Mon, 05 May 2025 07:31:14 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
+          "Value": "no-cache"
         },
         {
           "Name": "Content-Encoding",
@@ -2772,26 +2772,18 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg=\""
+          "Value": "W/\"SH2G2Z6QlV17toH4fFNqFPMnTiX+NMHcCXu4JrVVDH4=\""
         }
       ],
       "EndpointProperties": [
         {
-          "Name": "fingerprint",
-          "Value": "b9sayid5wm"
-        },
-        {
-          "Name": "label",
-          "Value": "css/site.css"
-        },
-        {
           "Name": "integrity",
-          "Value": "sha256-j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg="
+          "Value": "sha256-SH2G2Z6QlV17toH4fFNqFPMnTiX+NMHcCXu4JrVVDH4="
         }
       ]
     },
     {
-      "Route": "css/site.b9sayid5wm.css",
+      "Route": "css/site.css",
       "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/css/site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2801,7 +2793,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "667"
+          "Value": "696"
         },
         {
           "Name": "Content-Type",
@@ -2809,11 +2801,156 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg=\""
+          "Value": "\"SH2G2Z6QlV17toH4fFNqFPMnTiX+NMHcCXu4JrVVDH4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 04 May 2025 13:58:23 GMT"
+          "Value": "Mon, 05 May 2025 07:31:14 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-SH2G2Z6QlV17toH4fFNqFPMnTiX+NMHcCXu4JrVVDH4="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.css.gz",
+      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/2bd9n5whnu-o8l7i9cx9c.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "332"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"oPDe+uOL7w9ybl9Q5G/PNaIbj/svzAjxFSJERkN9Dlg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 05 May 2025 07:31:14 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-oPDe+uOL7w9ybl9Q5G/PNaIbj/svzAjxFSJERkN9Dlg="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.o8l7i9cx9c.css",
+      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/2bd9n5whnu-o8l7i9cx9c.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.003003003003"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "332"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"oPDe+uOL7w9ybl9Q5G/PNaIbj/svzAjxFSJERkN9Dlg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 05 May 2025 07:31:14 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"SH2G2Z6QlV17toH4fFNqFPMnTiX+NMHcCXu4JrVVDH4=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "o8l7i9cx9c"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-SH2G2Z6QlV17toH4fFNqFPMnTiX+NMHcCXu4JrVVDH4="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.o8l7i9cx9c.css",
+      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/css/site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "696"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SH2G2Z6QlV17toH4fFNqFPMnTiX+NMHcCXu4JrVVDH4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 05 May 2025 07:31:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2823,7 +2960,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "b9sayid5wm"
+          "Value": "o8l7i9cx9c"
         },
         {
           "Name": "label",
@@ -2831,13 +2968,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg="
+          "Value": "sha256-SH2G2Z6QlV17toH4fFNqFPMnTiX+NMHcCXu4JrVVDH4="
         }
       ]
     },
     {
-      "Route": "css/site.b9sayid5wm.css.gz",
-      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/2bd9n5whnu-b9sayid5wm.gz",
+      "Route": "css/site.o8l7i9cx9c.css.gz",
+      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/2bd9n5whnu-o8l7i9cx9c.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2846,7 +2983,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "318"
+          "Value": "332"
         },
         {
           "Name": "Content-Type",
@@ -2854,11 +2991,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"KbRAtTdCZlkPQMEP8615MCQRMWQsaAwQYpxvPAoetmA=\""
+          "Value": "\"oPDe+uOL7w9ybl9Q5G/PNaIbj/svzAjxFSJERkN9Dlg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 04 May 2025 13:58:23 GMT"
+          "Value": "Mon, 05 May 2025 07:31:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2876,7 +3013,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "b9sayid5wm"
+          "Value": "o8l7i9cx9c"
         },
         {
           "Name": "label",
@@ -2884,144 +3021,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-KbRAtTdCZlkPQMEP8615MCQRMWQsaAwQYpxvPAoetmA="
-        }
-      ]
-    },
-    {
-      "Route": "css/site.css",
-      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/2bd9n5whnu-b9sayid5wm.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.003134796238"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "318"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"KbRAtTdCZlkPQMEP8615MCQRMWQsaAwQYpxvPAoetmA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 04 May 2025 13:58:23 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg="
-        }
-      ]
-    },
-    {
-      "Route": "css/site.css",
-      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/css/site.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "667"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 04 May 2025 13:58:23 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg="
-        }
-      ]
-    },
-    {
-      "Route": "css/site.css.gz",
-      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/2bd9n5whnu-b9sayid5wm.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "318"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"KbRAtTdCZlkPQMEP8615MCQRMWQsaAwQYpxvPAoetmA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 04 May 2025 13:58:23 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-KbRAtTdCZlkPQMEP8615MCQRMWQsaAwQYpxvPAoetmA="
+          "Value": "sha256-oPDe+uOL7w9ybl9Q5G/PNaIbj/svzAjxFSJERkN9Dlg="
         }
       ]
     },

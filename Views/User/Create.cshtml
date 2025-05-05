@@ -1,0 +1,93 @@
+@model MyMvcProject.Models.User
+@{
+    ViewData["Title"] = "Add User";
+}
+
+<div class="container frame">
+    <h1 class="text-center">User Registration Form</h1>
+    <div class="text-center mb-4">
+        <small class="text-muted">Register new user by filling in all the fields</small>
+    </div>
+    
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    
+    <form method="post" asp-controller="User" asp-action="Create" style="border: 1px solid #dee2e6; padding: 20px; border-radius: 5px;">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+        <div class="mb-3">
+            <label asp-for="UserName" class="form-label">Username</label>
+            <input asp-for="UserName" class="form-control" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+    
+        <div class="mb-3">
+            <label asp-for="Password" class="form-label">Password</label>
+            <input asp-for="Password" class="form-control" type="password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="confirmPassword" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" />
+            <span id="confirmPasswordValidation" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Mobile" class="form-label">Mobile Number</label>
+            <input asp-for="Mobile" class="form-control" />
+            <span asp-validation-for="Mobile" class="text-danger"></span>
+        </div>
+        
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">Email Address</label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+            <a href="/User/List" class="btn btn-secondary ms-2">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // Custom validation for password confirmation
+        $(document).ready(function() {
+            $("#confirmPassword").on("input", function() {
+                if ($(this).val() !== $("#Password").val()) {
+                    $("#confirmPasswordValidation").text("Passwords do not match");
+                } else {
+                    $("#confirmPasswordValidation").text("");
+                }
+            });
+            
+            // Form submission validation
+            $("form").on("submit", function(e) {
+                if ($("#confirmPassword").val() !== $("#Password").val()) {
+                    e.preventDefault();
+                    $("#confirmPasswordValidation").text("Passwords do not match");
+                    return false;
+                }
+                console.log("Form is being submitted");
+                return true;
+            });
+        });
+    </script>
+}

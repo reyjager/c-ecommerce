@@ -32,10 +32,6 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9BZGRVc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/reyjaguines/Projects/csharp/MyMvcProject/Views/Home/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9EZWxldGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [/Users/reyjaguines/Projects/csharp/MyMvcProject/Views/Home/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -62,6 +58,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/reyjaguines/Projects/csharp/MyMvcProject/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/reyjaguines/Projects/csharp/MyMvcProject/Views/User/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/reyjaguines/Projects/csharp/MyMvcProject/Views/User/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/reyjaguines/Projects/csharp/MyMvcProject/Views/User/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/reyjaguines/Projects/csharp/MyMvcProject/Views/User/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9MaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/reyjaguines/Projects/csharp/MyMvcProject/Views/User/UserInfo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9Vc2VySW5mby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/reyjaguines/Projects/csharp/MyMvcProject/Views/_ViewImports.cshtml]

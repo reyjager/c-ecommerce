@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using MyMvcProject.Data.Configurations;
 using MyMvcProject.Models;
 
 namespace MyMvcProject.Data
@@ -8,42 +9,24 @@ namespace MyMvcProject.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            // Ensure database is created
-            try
-            {
-                Database.EnsureCreated();
-            }
-            catch
-            {
-                // Ignore errors here, they will be handled elsewhere
-            }
         }
 
         public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Product> Products { get; set; } = null!;
+        // Add other DbSet properties for additional models here
+        // public DbSet<Order> Orders { get; set; } = null!;
+        // etc.
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configure User entity
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.ToTable("Users");
-                entity.HasKey(e => e.Id);
-                entity.Property(e => e.Id).HasColumnName("Id").UseIdentityAlwaysColumn();
-                entity.Property(e => e.UserName).IsRequired().HasColumnName("UserName");
-                entity.Property(e => e.Password).IsRequired().HasColumnName("Password");
-                entity.Property(e => e.Email).IsRequired().HasColumnName("Email");
-                entity.Property(e => e.Mobile).IsRequired().HasColumnName("Mobile");
-                entity.Property(e => e.Roles).IsRequired(false).HasColumnName("Roles");
-            });
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.EnableSensitiveDataLogging();
-            optionsBuilder.EnableDetailedErrors();
-            base.OnConfiguring(optionsBuilder);
+            // Apply entity configurations individually
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            
+            // Alternative approach: automatically apply all configurations in the assembly
+            // modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         }
     }
 }

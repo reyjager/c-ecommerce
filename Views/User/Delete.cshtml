@@ -1,0 +1,74 @@
+@model MyMvcProject.Models.User
+@{
+    ViewData["Title"] = "Delete User";
+}
+
+<div class="container frame">
+    <h1 class="text-center">Delete User</h1>
+    <div class="text-center mb-4">
+        <small class="text-muted">Are you sure you want to delete this user?</small>
+    </div>
+    
+    <div class="card">
+        <div class="card-header bg-danger text-white">
+            <h5 class="mb-0">Warning</h5>
+        </div>
+        <div class="card-body">
+            <p>You are about to delete the following user:</p>
+            
+            <dl class="row">
+                <dt class="col-sm-3">Username</dt>
+                <dd class="col-sm-9">@Model.UserName</dd>
+                
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9">@Model.Email</dd>
+                
+                <dt class="col-sm-3">Mobile</dt>
+                <dd class="col-sm-9">@Model.Mobile</dd>
+                
+                <dt class="col-sm-3">Role</dt>
+                <dd class="col-sm-9">@Model.Roles</dd>
+                
+                <dt class="col-sm-3">Created On</dt>
+                <dd class="col-sm-9">@Model.DateCreated.ToString("yyyy-MM-dd HH:mm")</dd>
+                
+                @if (Model.DateUpdated.HasValue)
+                {
+                    <dt class="col-sm-3">Last Updated</dt>
+                    <dd class="col-sm-9">@Model.DateUpdated.Value.ToString("yyyy-MM-dd HH:mm")</dd>
+                }
+            </dl>
+            
+            <p class="text-danger">This action cannot be undone.</p>
+            
+            <div class="d-flex justify-content-end">
+                <a href="/User/List" class="btn btn-secondary me-2">Cancel</a>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Confirm Delete Modal -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Final Confirmation</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you absolutely sure you want to delete user <strong>@Model.UserName</strong>?</p>
+                <p class="text-danger fw-bold">This action cannot be undone and all user data will be permanently lost.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form method="post" asp-controller="User" asp-action="Delete" asp-route-id="@Model.Id">
+                    <button type="submit" class="btn btn-danger">Confirm Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

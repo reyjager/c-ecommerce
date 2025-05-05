@@ -11,6 +11,10 @@ namespace MyMvcProject.Models
         [Column("Id")]
         public int Id { get; set; }
 
+        [Required]
+        [Column("UserId")]
+        public int UserId { get; set; }
+
         [Required(ErrorMessage = "Username is required")]
         [Column("UserName")]
         public string UserName { get; set; } = string.Empty;
@@ -29,13 +33,13 @@ namespace MyMvcProject.Models
         [EmailAddress(ErrorMessage = "Please enter a valid email address")]
         [Column("Email")]
         public string Email { get; set; } = string.Empty;
-    
+
         [Column("Roles")]
         public string? Roles { get; set; }
-        
+
         [Column("DateCreated")]
         public DateTime DateCreated { get; set; }
-        
+
         [Column("DateUpdated")]
         public DateTime? DateUpdated { get; set; }
     }
