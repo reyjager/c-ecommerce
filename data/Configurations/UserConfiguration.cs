@@ -22,6 +22,9 @@ namespace MyMvcProject.Data.Configurations
             entity.Property(e => e.Email).IsRequired().HasColumnName("Email");
             entity.Property(e => e.Mobile).IsRequired().HasColumnName("Mobile");
             entity.Property(e => e.Roles).IsRequired(false).HasColumnName("Roles");
+            entity.Property(e => e.IsActive).HasColumnName("IsActive").HasDefaultValue(true);
+            entity.Property(e => e.DateCreated).HasColumnName("DateCreated").HasDefaultValueSql("CURRENT_TIMESTAMP");
+            entity.Property(e => e.DateUpdated).HasColumnName("DateUpdated").IsRequired(false);
         }
     }
 }

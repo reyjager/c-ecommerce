@@ -37,6 +37,9 @@ namespace MyMvcProject.Models
         [Column("Roles")]
         public string? Roles { get; set; }
 
+        [Column("IsActive")]
+        public bool IsActive { get; set; }
+
         [Column("DateCreated")]
         public DateTime DateCreated { get; set; }
 

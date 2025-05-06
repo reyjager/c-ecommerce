@@ -37,15 +37,35 @@ namespace MyMvcProject.Controllers
                 {
                     connection.Open();
 
-                    string sql = @"SELECT ""Id"", ""UserId"",""UserName"", ""Password"", ""Email"", ""Mobile"", ""Roles"", ""DateCreated"", ""DateUpdated"" 
+                    // First, check if IsActive column exists
+                    bool isActiveColumnExists = false;
+                    using (var checkCmd = new NpgsqlCommand(
+                        "SELECT EXISTS (SELECT FROM information_schema.columns WHERE table_name = 'Users' AND column_name = 'IsActive')",
+                        connection))
+                    {
+                        isActiveColumnExists = (bool)checkCmd.ExecuteScalar();
+                    }
+
+                    string sql;
+                    if (isActiveColumnExists)
+                    {
+                        sql = @"SELECT ""Id"", ""UserId"",""UserName"", ""Password"", ""Email"", ""Mobile"", ""Roles"", ""IsActive"", ""DateCreated"", ""DateUpdated"" 
                               FROM ""Users"" ORDER BY ""Id""";
+                    }
+                    else
+                    {
+                        // If IsActive column doesn't exist, use a query without it
+                        sql = @"SELECT ""Id"", ""UserId"",""UserName"", ""Password"", ""Email"", ""Mobile"", ""Roles"", ""DateCreated"", ""DateUpdated"" 
+                              FROM ""Users"" ORDER BY ""Id""";
+                    }
+
                     using (var cmd = new NpgsqlCommand(sql, connection))
                     {
                         using (var reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                users.Add(new User
+                                var user = new User
                                 {
                                     Id = reader.GetInt32(0),
                                     UserId = reader.GetInt32(1),
@@ -54,10 +74,42 @@ namespace MyMvcProject.Controllers
                                     Email = reader.GetString(4),
                                     Mobile = reader.GetString(5),
                                     Roles = reader.IsDBNull(6) ? null : reader.GetString(6),
-                                    DateCreated = reader.IsDBNull(7) ? DateTime.UtcNow : reader.GetDateTime(7),
-                                    DateUpdated = reader.IsDBNull(8) ? null : reader.GetDateTime(8)
-                                });
+                                };
+
+                                if (isActiveColumnExists)
+                                {
+                                    user.IsActive = reader.IsDBNull(7) ? true : reader.GetBoolean(7);
+                                    user.DateCreated = reader.IsDBNull(8) ? DateTime.UtcNow : reader.GetDateTime(8);
+                                    user.DateUpdated = reader.IsDBNull(9) ? null : reader.GetDateTime(9);
+                                }
+                                else
+                                {
+                                    user.IsActive = true; // Default to active if column doesn't exist
+                                    user.DateCreated = reader.IsDBNull(7) ? DateTime.UtcNow : reader.GetDateTime(7);
+                                    user.DateUpdated = reader.IsDBNull(8) ? null : reader.GetDateTime(8);
+                                }
+
+                                users.Add(user);
                             }
+                        }
+                    }
+
+                    // If we have users but no IsActive column, add it to the table
+                    if (users.Count > 0 && !isActiveColumnExists)
+                    {
+                        try
+                        {
+                            using (var cmd = new NpgsqlCommand(
+                                "ALTER TABLE \"Users\" ADD COLUMN \"IsActive\" BOOLEAN NOT NULL DEFAULT TRUE",
+                                connection))
+                            {
+                                cmd.ExecuteNonQuery();
+                                _logger.LogInformation("Added IsActive column to Users table");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            _logger.LogError(ex, "Error adding IsActive column");
                         }
                     }
 
@@ -120,7 +172,20 @@ namespace MyMvcProject.Controllers
 
                         if (count > 0)
                         {
-                            ModelState.AddModelError("Email", "A user with this email already exists.");
+                            ModelState.AddModelError("Email", "Email already exists.");
+                            return View(user);
+                        }
+                    }
+
+                    // check if user with the same mobile already exists
+                    using (var checkCmd = new NpgsqlCommand("SELECT COUNT(*) FROM \"Users\" WHERE \"Mobile\" = @mobile", connection))
+                    {
+                        checkCmd.Parameters.AddWithValue("mobile", user.Mobile);
+                        int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                        if (count > 0)
+                        {
+                            ModelState.AddModelError("Mobile", "Mobile already exists.");
                             return View(user);
                         }
                     }
@@ -145,10 +210,10 @@ namespace MyMvcProject.Controllers
                     // Hash the password
                     string hashedPassword = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
-                    // Insert the user directly with SQL - now including UserId
+                    // Insert the user directly with SQL - now including UserId and IsActive
                     string insertSql = @"
-INSERT INTO ""Users"" (""UserId"", ""UserName"", ""Password"", ""Email"", ""Mobile"", ""Roles"", ""DateCreated"", ""DateUpdated"")
-VALUES (@userId, @userName, @password, @email, @mobile, @roles, @dateCreated, @dateUpdated)
+INSERT INTO ""Users"" (""UserId"", ""UserName"", ""Password"", ""Email"", ""Mobile"", ""Roles"", ""IsActive"", ""DateCreated"", ""DateUpdated"")
+VALUES (@userId, @userName, @password, @email, @mobile, @roles, @isActive, @dateCreated, @dateUpdated)
 RETURNING ""Id""";
 
                     using (var cmd = new NpgsqlCommand(insertSql, connection))
@@ -161,6 +226,7 @@ RETURNING ""Id""";
                         cmd.Parameters.AddWithValue("email", user.Email);
                         cmd.Parameters.AddWithValue("mobile", user.Mobile);
                         cmd.Parameters.AddWithValue("roles", user.Roles ?? (object)DBNull.Value);
+                        cmd.Parameters.AddWithValue("isActive", user.IsActive);
                         cmd.Parameters.AddWithValue("dateCreated", now);
                         cmd.Parameters.AddWithValue("dateUpdated", DBNull.Value);
 
@@ -244,7 +310,7 @@ RETURNING ""Id""";
                 {
                     connection.Open();
 
-                    string sql = @"SELECT ""Id"", ""UserId"",""UserName"", ""Password"", ""Email"", ""Mobile"", ""Roles"", ""DateCreated"", ""DateUpdated"" 
+                    string sql = @"SELECT ""Id"", ""UserId"",""UserName"", ""Password"", ""Email"", ""Mobile"", ""Roles"", ""IsActive"", ""DateCreated"", ""DateUpdated"" 
                               FROM ""Users"" WHERE ""Id"" = @id";
                     using (var cmd = new NpgsqlCommand(sql, connection))
                     {
@@ -263,8 +329,9 @@ RETURNING ""Id""";
                                     Email = reader.GetString(4),
                                     Mobile = reader.GetString(5),
                                     Roles = reader.IsDBNull(6) ? null : reader.GetString(6),
-                                    DateCreated = reader.IsDBNull(7) ? DateTime.UtcNow : reader.GetDateTime(7),
-                                    DateUpdated = reader.IsDBNull(8) ? null : reader.GetDateTime(8)
+                                    IsActive = reader.IsDBNull(7) ? true : reader.GetBoolean(7),
+                                    DateCreated = reader.IsDBNull(8) ? DateTime.UtcNow : reader.GetDateTime(8),
+                                    DateUpdated = reader.IsDBNull(9) ? null : reader.GetDateTime(9)
                                 };
                             }
                         }
@@ -345,6 +412,7 @@ RETURNING ""Id""";
                             ""Email"" = @email, 
                             ""Mobile"" = @mobile, 
                             ""Roles"" = @roles,
+                            ""IsActive"" = @isActive,
                             ""DateUpdated"" = @dateUpdated
                         WHERE ""Id"" = @id";
 
@@ -358,6 +426,7 @@ RETURNING ""Id""";
                             cmd.Parameters.AddWithValue("email", user.Email);
                             cmd.Parameters.AddWithValue("mobile", user.Mobile);
                             cmd.Parameters.AddWithValue("roles", user.Roles ?? (object)DBNull.Value);
+                            cmd.Parameters.AddWithValue("isActive", user.IsActive);
                             cmd.Parameters.AddWithValue("dateUpdated", now);
                             cmd.Parameters.AddWithValue("id", user.Id);
 
@@ -377,6 +446,7 @@ RETURNING ""Id""";
                             ""Email"" = @email, 
                             ""Mobile"" = @mobile, 
                             ""Roles"" = @roles,
+                            ""IsActive"" = @isActive,
                             ""DateUpdated"" = @dateUpdated
                         WHERE ""Id"" = @id";
 
@@ -389,6 +459,7 @@ RETURNING ""Id""";
                             cmd.Parameters.AddWithValue("email", user.Email);
                             cmd.Parameters.AddWithValue("mobile", user.Mobile);
                             cmd.Parameters.AddWithValue("roles", user.Roles ?? (object)DBNull.Value);
+                            cmd.Parameters.AddWithValue("isActive", user.IsActive);
                             cmd.Parameters.AddWithValue("dateUpdated", now);
                             cmd.Parameters.AddWithValue("id", user.Id);
 
@@ -432,7 +503,7 @@ RETURNING ""Id""";
                 {
                     connection.Open();
 
-                    string sql = @"SELECT ""Id"",""UserId"", ""UserName"", ""Email"", ""Mobile"", ""Roles"", ""DateCreated"", ""DateUpdated"" 
+                    string sql = @"SELECT ""Id"",""UserId"", ""UserName"", ""Email"", ""Mobile"", ""Roles"", ""IsActive"", ""DateCreated"", ""DateUpdated"" 
                               FROM ""Users"" WHERE ""Id"" = @id";
                     using (var cmd = new NpgsqlCommand(sql, connection))
                     {
@@ -450,8 +521,9 @@ RETURNING ""Id""";
                                     Email = reader.GetString(3),
                                     Mobile = reader.GetString(4),
                                     Roles = reader.IsDBNull(5) ? null : reader.GetString(5),
-                                    DateCreated = reader.IsDBNull(6) ? DateTime.UtcNow : reader.GetDateTime(6),
-                                    DateUpdated = reader.IsDBNull(7) ? null : reader.GetDateTime(7)
+                                    IsActive = reader.IsDBNull(6) ? true : reader.GetBoolean(6),
+                                    DateCreated = reader.IsDBNull(7) ? DateTime.UtcNow : reader.GetDateTime(7),
+                                    DateUpdated = reader.IsDBNull(8) ? null : reader.GetDateTime(8)
                                 };
                             }
                         }
@@ -475,7 +547,7 @@ RETURNING ""Id""";
                 return RedirectToAction("List");
             }
         }
-        
+
         [HttpPost]
         public IActionResult Delete(int id, bool confirmed = true)
         {
@@ -484,11 +556,11 @@ RETURNING ""Id""";
                 // Delete the user
                 string connectionString = _configuration.GetConnectionString("DefaultConnection") ?? "";
                 int rowsAffected = 0;
-                
+
                 using (var connection = new NpgsqlConnection(connectionString))
                 {
                     connection.Open();
-                    
+
                     string deleteSql = @"DELETE FROM ""Users"" WHERE ""Id"" = @id";
                     using (var cmd = new NpgsqlCommand(deleteSql, connection))
                     {
@@ -496,7 +568,7 @@ RETURNING ""Id""";
                         rowsAffected = cmd.ExecuteNonQuery();
                         _logger.LogInformation("User deleted successfully. Rows affected: {Rows}", rowsAffected);
                     }
-                    
+
                     connection.Close();
                 }
 
@@ -519,6 +591,55 @@ RETURNING ""Id""";
             }
         }
 
+        [HttpPost]
+        public IActionResult ToggleActive(int id, bool setActive)
+        {
+            try
+            {
+                // Toggle the user's active status
+                string connectionString = _configuration.GetConnectionString("DefaultConnection") ?? "";
+                int rowsAffected = 0;
+
+                using (var connection = new NpgsqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string updateSql = @"UPDATE ""Users"" SET ""IsActive"" = @isActive, ""DateUpdated"" = @dateUpdated WHERE ""Id"" = @id";
+                    using (var cmd = new NpgsqlCommand(updateSql, connection))
+                    {
+                        DateTime now = DateTime.UtcNow;
+                        cmd.Parameters.AddWithValue("isActive", setActive);
+                        cmd.Parameters.AddWithValue("dateUpdated", now);
+                        cmd.Parameters.AddWithValue("id", id);
+                        
+                        rowsAffected = cmd.ExecuteNonQuery();
+                        _logger.LogInformation("User active status updated successfully. Rows affected: {Rows}", rowsAffected);
+                    }
+
+                    connection.Close();
+                }
+
+                if (rowsAffected > 0)
+                {
+                    TempData["SuccessMessage"] = setActive ? 
+                        "User activated successfully!" : 
+                        "User deactivated successfully!";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "User not found or could not be updated.";
+                }
+
+                return RedirectToAction("List");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error updating user active status");
+                TempData["ErrorMessage"] = "Error updating user status: " + ex.Message;
+                return RedirectToAction("List");
+            }
+        }
+
         public IActionResult GetAllUsersJson()
         {
             List<object> users = new List<object>();
@@ -528,25 +649,63 @@ RETURNING ""Id""";
             {
                 connection.Open();
 
-                string sql = @"SELECT ""Id"",""UserId"", ""UserName"", ""Email"", ""Mobile"", ""Roles"", ""DateCreated"", ""DateUpdated"" 
+                // First, check if IsActive column exists
+                bool isActiveColumnExists = false;
+                using (var checkCmd = new NpgsqlCommand(
+                    "SELECT EXISTS (SELECT FROM information_schema.columns WHERE table_name = 'Users' AND column_name = 'IsActive')",
+                    connection))
+                {
+                    isActiveColumnExists = (bool)checkCmd.ExecuteScalar();
+                }
+
+                string sql;
+                if (isActiveColumnExists)
+                {
+                    sql = @"SELECT ""Id"",""UserId"", ""UserName"", ""Email"", ""Mobile"", ""Roles"", ""IsActive"", ""DateCreated"", ""DateUpdated"" 
                           FROM ""Users"" ORDER BY ""Id""";
+                }
+                else
+                {
+                    sql = @"SELECT ""Id"",""UserId"", ""UserName"", ""Email"", ""Mobile"", ""Roles"", ""DateCreated"", ""DateUpdated"" 
+                          FROM ""Users"" ORDER BY ""Id""";
+                }
+
                 using (var cmd = new NpgsqlCommand(sql, connection))
                 {
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            users.Add(new
+                            if (isActiveColumnExists)
                             {
-                                Id = reader.GetInt32(0),
-                                UserId = reader.GetInt32(1),
-                                UserName = reader.GetString(2),
-                                Email = reader.GetString(3),
-                                Mobile = reader.GetString(4),
-                                Roles = reader.IsDBNull(5) ? null : reader.GetString(5),
-                                DateCreated = reader.IsDBNull(6) ? null : reader.GetDateTime(6).ToString("yyyy-MM-dd HH:mm:ss"),
-                                DateUpdated = reader.IsDBNull(7) ? null : reader.GetDateTime(7).ToString("yyyy-MM-dd HH:mm:ss")
-                            });
+                                users.Add(new
+                                {
+                                    Id = reader.GetInt32(0),
+                                    UserId = reader.GetInt32(1),
+                                    UserName = reader.GetString(2),
+                                    Email = reader.GetString(3),
+                                    Mobile = reader.GetString(4),
+                                    Roles = reader.IsDBNull(5) ? null : reader.GetString(5),
+                                    IsActive = reader.IsDBNull(6) ? true : reader.GetBoolean(6),
+                                    DateCreated = reader.IsDBNull(7) ? null : reader.GetDateTime(7).ToString("yyyy-MM-dd HH:mm:ss"),
+                                    DateUpdated = reader.IsDBNull(8) ? null : reader.GetDateTime(8).ToString("yyyy-MM-dd HH:mm:ss")
+                                });
+                            }
+                            else
+                            {
+                                users.Add(new
+                                {
+                                    Id = reader.GetInt32(0),
+                                    UserId = reader.GetInt32(1),
+                                    UserName = reader.GetString(2),
+                                    Email = reader.GetString(3),
+                                    Mobile = reader.GetString(4),
+                                    Roles = reader.IsDBNull(5) ? null : reader.GetString(5),
+                                    IsActive = true, // Default to active if column doesn't exist
+                                    DateCreated = reader.IsDBNull(6) ? null : reader.GetDateTime(6).ToString("yyyy-MM-dd HH:mm:ss"),
+                                    DateUpdated = reader.IsDBNull(7) ? null : reader.GetDateTime(7).ToString("yyyy-MM-dd HH:mm:ss")
+                                });
+                            }
                         }
                     }
                 }
@@ -571,17 +730,52 @@ RETURNING ""Id""";
             if (tableExists)
             {
                 // Always reset the sequence to ensure it starts at 300000
+                try
+                {
+                    using (var cmd = new NpgsqlCommand(
+                        "SELECT setval('\\\"Users_UserId_seq\\\"', 300000, false)",
+                        connection))
+                    {
+                        cmd.ExecuteNonQuery();
+                        _logger.LogInformation("UserId sequence reset to start at 300000");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning(ex, "Could not reset UserId sequence. This may be normal if the sequence doesn't exist.");
+                }
+                
+                // Check if IsActive column exists, if not add it
+                bool isActiveColumnExists = false;
                 using (var cmd = new NpgsqlCommand(
-                    "SELECT setval('\"Users_UserId_seq\"', 300000, false)",
+                    "SELECT EXISTS (SELECT FROM information_schema.columns WHERE table_name = 'Users' AND column_name = 'IsActive')",
                     connection))
                 {
-                    cmd.ExecuteNonQuery();
-                    _logger.LogInformation("UserId sequence reset to start at 300000");
+                    isActiveColumnExists = (bool)cmd.ExecuteScalar();
+                }
+                
+                if (!isActiveColumnExists)
+                {
+                    try
+                    {
+                        // Add IsActive column with default value true
+                        using (var cmd = new NpgsqlCommand(
+                            "ALTER TABLE \"Users\" ADD COLUMN \"IsActive\" BOOLEAN NOT NULL DEFAULT TRUE",
+                            connection))
+                        {
+                            cmd.ExecuteNonQuery();
+                            _logger.LogInformation("Added IsActive column to Users table");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, "Error adding IsActive column to Users table");
+                    }
                 }
             }
             else
             {
-                // Create the table with all columns
+                // Create the table with all columns including IsActive
                 string createTableSql = @"
         CREATE TABLE IF NOT EXISTS ""Users"" (
             ""Id"" SERIAL PRIMARY KEY,
@@ -591,6 +785,7 @@ RETURNING ""Id""";
             ""Email"" TEXT NOT NULL,
             ""Mobile"" TEXT NOT NULL,
             ""Roles"" TEXT,
+            ""IsActive"" BOOLEAN NOT NULL DEFAULT TRUE,
             ""DateCreated"" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             ""DateUpdated"" TIMESTAMP NULL
         )";

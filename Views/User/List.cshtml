@@ -37,7 +37,7 @@
                     <th>Mobile</th>
                     <th>Role</th>
                     <th>Created</th>
-                    <th>Actions</th>
+                    <th class="d-flex justify-content-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,15 +55,26 @@
                         <td>@user.Roles</td>
                         <td>@user.DateCreated.ToString("yyyy-MM-dd")</td>
                         <td>
-                            <div class="btn-group" role="group">
-                                <a href="/User/Edit/@user.Id" class="btn btn-sm btn-primary">Edit</a>
-                                <button type="button" class="btn btn-sm btn-danger" 
-                                        data-bs-toggle="modal" 
-                                        data-bs-target="#deleteModal" 
-                                        data-id="@user.Id"
-                                        data-username="@user.UserName">
-                                    Delete
-                                </button>
+                            <div class="d-flex justify-content-center">
+                                <div class="btn-group gap-2" role="group">
+                                    <a href="/User/Edit/@user.Id" class="btn btn-sm btn-primary">Edit</a>
+                                    <button type="button" class="btn btn-sm btn-danger" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#deleteModal" 
+                                            data-id="@user.Id"
+                                            data-username="@user.UserName">
+                                        Delete
+                                    </button>
+                                    <button type="button" class="btn btn-sm @(user.IsActive ? "btn-warning" : "btn-success")"
+                                            style="width: 100px;" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#toggleActiveModal" 
+                                            data-id="@user.Id"
+                                            data-username="@user.UserName"
+                                            data-isactive="@user.IsActive">
+                                        @(user.IsActive ? "Deactivate" : "Activate")
+                                    </button>
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -95,6 +106,29 @@
             </div>
         </div>
     </div>
+    
+    <!-- Toggle Active Status Modal -->
+    <div class="modal fade" id="toggleActiveModal" tabindex="-1" aria-labelledby="toggleActiveModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" id="toggleActiveModalHeader">
+                    <h5 class="modal-title" id="toggleActiveModalLabel">Confirm Status Change</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="toggleActiveMessage"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <form id="toggleActiveForm" method="post" asp-controller="User" asp-action="ToggleActive">
+                        <input type="hidden" id="toggleActiveUserId" name="id" value="" />
+                        <input type="hidden" id="toggleActiveStatus" name="setActive" value="" />
+                        <button type="submit" id="toggleActiveButton" class="btn">Confirm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 else
 {
@@ -121,6 +155,45 @@ else
                     document.getElementById('deleteUserName').textContent = userName;
                     document.getElementById('deleteUserId').value = userId;
                     document.getElementById('deleteForm').action = '/User/Delete/' + userId;
+                });
+            }
+            
+            // Set up the toggle active status modal
+            const toggleActiveModal = document.getElementById('toggleActiveModal');
+            if (toggleActiveModal) {
+                toggleActiveModal.addEventListener('show.bs.modal', function(event) {
+                    // Button that triggered the modal
+                    const button = event.relatedTarget;
+                    
+                    // Extract info from data attributes
+                    const userId = button.getAttribute('data-id');
+                    const userName = button.getAttribute('data-username');
+                    const isActive = button.getAttribute('data-isactive').toLowerCase() === 'true';
+                    
+                    // Update the modal's content based on current status
+                    const header = document.getElementById('toggleActiveModalHeader');
+                    const message = document.getElementById('toggleActiveMessage');
+                    const confirmButton = document.getElementById('toggleActiveButton');
+                    
+                    if (isActive) {
+                        // User is currently active, will be deactivated
+                        header.className = 'modal-header bg-warning text-dark';
+                        message.innerHTML = `Are you sure you want to <strong>deactivate</strong> user <strong>${userName}</strong>?`;
+                        confirmButton.className = 'btn btn-warning';
+                        confirmButton.textContent = 'Deactivate';
+                        document.getElementById('toggleActiveStatus').value = 'false';
+                    } else {
+                        // User is currently inactive, will be activated
+                        header.className = 'modal-header bg-success text-white';
+                        message.innerHTML = `Are you sure you want to <strong>activate</strong> user <strong>${userName}</strong>?`;
+                        confirmButton.className = 'btn btn-success';
+                        confirmButton.textContent = 'Activate';
+                        document.getElementById('toggleActiveStatus').value = 'true';
+                    }
+                    
+                    // Set the user ID
+                    document.getElementById('toggleActiveUserId').value = userId;
+                    document.getElementById('toggleActiveForm').action = '/User/ToggleActive/' + userId;
                 });
             }
         });
