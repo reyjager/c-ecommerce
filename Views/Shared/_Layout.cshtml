@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="environment" content="@(Context.Request.Host.Value.Contains("localhost") ? "Development" : "Production")" />
     <title>@ViewData["Title"] - MyMvcProject</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -36,6 +37,27 @@
                             <ul class="dropdown-menu" aria-labelledby="userDropdown">
                                 <li><a class="dropdown-item" asp-area="" asp-controller="User" asp-action="List">View Users</a></li>
                                 <li><a class="dropdown-item" asp-area="" asp-controller="User" asp-action="Create">Add User</a></li>
+                            </ul>
+                        </li>
+                        
+                        <!-- Product related links -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Products
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="productDropdown">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Index">View Products</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Create">Add Product</a></li>
+                            </ul>
+                        </li>
+                         <!-- Branch related links -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="productDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Branch
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="branchDropdown">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Branch" asp-action="Index">View Branch</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Branch" asp-action="Create">Add Branch</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -73,6 +95,10 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    @if (Context.Request.Host.Value.Contains("localhost"))
+    {
+        <script src="~/js/hot-reload.js" asp-append-version="true"></script>
+    }
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

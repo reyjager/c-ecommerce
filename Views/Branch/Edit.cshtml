@@ -1,0 +1,75 @@
+@model MyMvcProject.Models.Branch
+
+@{
+    ViewData["Title"] = "Edit Branch";
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h2>Edit Branch</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="BranchId" class="control-label">Branch ID</label>
+                            <input asp-for="BranchId" class="form-control" />
+                            <span asp-validation-for="BranchId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="BranchName" class="control-label">Branch Name</label>
+                            <input asp-for="BranchName" class="form-control" />
+                            <span asp-validation-for="BranchName" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group mb-3">
+                    <label asp-for="BranchAddress" class="control-label">Address</label>
+                    <textarea asp-for="BranchAddress" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="BranchAddress" class="text-danger"></span>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="ContactNumber" class="control-label">Contact Number</label>
+                            <input asp-for="ContactNumber" class="form-control" />
+                            <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="LocationsString" class="control-label">Locations (comma separated)</label>
+                            <input asp-for="LocationsString" class="form-control" placeholder="Location1, Location2, Location3" />
+                            <span asp-validation-for="LocationsString" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group mb-3">
+                    <div class="form-check">
+                        <input asp-for="IsActive" class="form-check-input" />
+                        <label asp-for="IsActive" class="form-check-label">Active</label>
+                    </div>
+                </div>
+                
+                <div class="form-group d-flex justify-content-between">
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

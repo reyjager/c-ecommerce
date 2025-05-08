@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
+      "Id": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/js/hot-reload.js",
+      "PackagePath": "staticwebassets/js/hot-reload.js"
+    },
+    {
       "Id": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/js/site.js",
       "PackagePath": "staticwebassets/js/site.js"
     },

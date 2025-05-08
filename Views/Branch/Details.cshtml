@@ -1,0 +1,200 @@
+@model MyMvcProject.Models.Branch
+
+@{
+    ViewData["Title"] = "Branch Details";
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-info text-white">
+            <h2>Branch Details</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-4">Branch ID</dt>
+                        <dd class="col-sm-8">@Model.BranchId</dd>
+                        
+                        <dt class="col-sm-4">Branch Name</dt>
+                        <dd class="col-sm-8">@Model.BranchName</dd>
+                        
+                        <dt class="col-sm-4">Address</dt>
+                        <dd class="col-sm-8">@Model.BranchAddress</dd>
+                        
+                        <dt class="col-sm-4">Contact Number</dt>
+                        <dd class="col-sm-8">@Model.ContactNumber</dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-4">Locations</dt>
+                        <dd class="col-sm-8">
+                            @if (!string.IsNullOrEmpty(Model.LocationsString))
+                            {
+                                <div class="d-flex flex-wrap gap-1">
+                                    @foreach (var location in Model.LocationsString.Split(',', StringSplitOptions.RemoveEmptyEntries))
+                                    {
+                                        <span class="badge bg-info">@location</span>
+                                    }
+                                </div>
+                            }
+                        </dd>
+                        
+                        <dt class="col-sm-4">Status</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.IsActive)
+                            {
+                                <span class="badge bg-success">Active</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Inactive</span>
+                            }
+                        </dd>
+                        
+                        <dt class="col-sm-4">Created</dt>
+                        <dd class="col-sm-8">@Model.DateCreated.ToString("yyyy-MM-dd HH:mm")</dd>
+                        
+                        <dt class="col-sm-4">Last Updated</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.DateUpdated.HasValue)
+                            {
+                                @Model.DateUpdated.Value.ToString("yyyy-MM-dd HH:mm")
+                            }
+                            else
+                            {
+                                <span class="text-muted">Not updated yet</span>
+                            }
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            
+            <div class="mt-4 d-flex justify-content-between">
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+                    <button type="button" class="btn @(Model.IsActive ? "btn-warning" : "btn-success")"
+                            data-bs-toggle="modal" 
+                            data-bs-target="#toggleActiveModal" 
+                            data-id="@Model.Id"
+                            data-branchname="@Model.BranchName"
+                            data-isactive="@Model.IsActive">
+                        @(Model.IsActive ? "Deactivate" : "Activate")
+                    </button>
+                    <button type="button" class="btn btn-danger"
+                            data-bs-toggle="modal" 
+                            data-bs-target="#deleteModal" 
+                            data-id="@Model.Id"
+                            data-branchname="@Model.BranchName">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete branch <strong id="deleteBranchName"></strong>?</p>
+                <p class="text-danger">This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form id="deleteForm" method="post" asp-controller="Branch" asp-action="Delete">
+                    <input type="hidden" id="deleteBranchId" name="id" value="" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toggle Active Status Modal -->
+<div class="modal fade" id="toggleActiveModal" tabindex="-1" aria-labelledby="toggleActiveModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" id="toggleActiveModalHeader">
+                <h5 class="modal-title" id="toggleActiveModalLabel">Confirm Status Change</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="toggleActiveMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form id="toggleActiveForm" method="post" asp-controller="Branch" asp-action="ToggleActive">
+                    <input type="hidden" id="toggleActiveBranchId" name="id" value="" />
+                    <button type="submit" id="toggleActiveButton" class="btn">Confirm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Set up the delete modal with the correct branch information
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteModal = document.getElementById('deleteModal');
+            if (deleteModal) {
+                deleteModal.addEventListener('show.bs.modal', function(event) {
+                    // Button that triggered the modal
+                    const button = event.relatedTarget;
+                    
+                    // Extract info from data attributes
+                    const branchId = button.getAttribute('data-id');
+                    const branchName = button.getAttribute('data-branchname');
+                    
+                    // Update the modal's content
+                    document.getElementById('deleteBranchName').textContent = branchName;
+                    document.getElementById('deleteBranchId').value = branchId;
+                    document.getElementById('deleteForm').action = '/Branch/Delete/' + branchId;
+                });
+            }
+            
+            // Set up the toggle active status modal
+            const toggleActiveModal = document.getElementById('toggleActiveModal');
+            if (toggleActiveModal) {
+                toggleActiveModal.addEventListener('show.bs.modal', function(event) {
+                    // Button that triggered the modal
+                    const button = event.relatedTarget;
+                    
+                    // Extract info from data attributes
+                    const branchId = button.getAttribute('data-id');
+                    const branchName = button.getAttribute('data-branchname');
+                    const isActive = button.getAttribute('data-isactive') === 'True';
+                    
+                    // Update the modal's content
+                    const header = document.getElementById('toggleActiveModalHeader');
+                    const message = document.getElementById('toggleActiveMessage');
+                    const confirmButton = document.getElementById('toggleActiveButton');
+                    
+                    if (isActive) {
+                        header.className = 'modal-header bg-warning';
+                        message.textContent = `Are you sure you want to deactivate branch "${branchName}"?`;
+                        confirmButton.className = 'btn btn-warning';
+                        confirmButton.textContent = 'Deactivate';
+                    } else {
+                        header.className = 'modal-header bg-success';
+                        message.textContent = `Are you sure you want to activate branch "${branchName}"?`;
+                        confirmButton.className = 'btn btn-success';
+                        confirmButton.textContent = 'Activate';
+                    }
+                    
+                    document.getElementById('toggleActiveBranchId').value = branchId;
+                    document.getElementById('toggleActiveForm').action = '/Branch/ToggleActive/' + branchId;
+                });
+            }
+        });
+    </script>
+}

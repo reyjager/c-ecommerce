@@ -1,0 +1,155 @@
+@model MyMvcProject.Models.Product
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<div class="container">
+    <h1 class="mb-4">Create Product</h1>
+
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Product Information</h5>
+            </div>
+            <div class="card-body">
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="ProductId" class="control-label">Product ID</label>
+                            <input asp-for="ProductId" class="form-control" readonly />
+                             <small class="form-text text-muted">Auto increment Product code</small>
+                            <span asp-validation-for="ProductId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="SkuNumber" class="control-label">SKU Number</label>
+                            <div class="input-group">
+                                <input asp-for="SkuNumber" class="form-control" readonly />
+                                <button type="button" class="btn btn-outline-secondary" id="generateSku">Generate</button>
+                            </div>
+                            <small class="form-text text-muted">12-digit unique identifier</small>
+                            <span asp-validation-for="SkuNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="BarcodeNumber" class="control-label">Barcode Number</label>
+                            <div class="input-group">
+                                <input asp-for="BarcodeNumber" class="form-control" readonly />
+                                <button type="button" class="btn btn-outline-secondary" id="generateBarcode">Generate</button>
+                            </div>
+                            <small class="form-text text-muted">10-digit unique identifier</small>
+                            <span asp-validation-for="BarcodeNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="ModelNumber" class="control-label">Model Number</label>
+                            <input asp-for="ModelNumber" class="form-control" />
+                            <span asp-validation-for="ModelNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label">Product Name</label>
+                            <input asp-for="Name" class="form-control" required />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Description" class="control-label">Description</label>
+                    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                
+                
+                
+                <!-- Price, Stock Quantity, and Image URL fields have been removed -->
+                
+                
+                
+                <div class="form-check mb-3">
+                    <input asp-for="IsActive" class="form-check-input" />
+                    <label asp-for="IsActive" class="form-check-label">Active</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group d-flex justify-content-between">
+            <a href="/Product/Index" class="btn btn-secondary">Back to List</a>
+            <button type="submit" class="btn btn-success">Create</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        // Add client-side validation
+        $(document).ready(function() {
+            // Enable hot reload detection
+            console.log("Product Create page loaded and ready for hot reload");
+            
+            // Generate new SKU and barcode on page load if they're empty
+            if (!$("#SkuNumber").val()) {
+                generateRandomSku();
+            }
+            
+            if (!$("#BarcodeNumber").val()) {
+                generateRandomBarcode();
+            }
+            
+            // Generate SKU button click handler
+            $("#generateSku").on("click", function() {
+                generateRandomSku();
+            });
+            
+            // Generate Barcode button click handler
+            $("#generateBarcode").on("click", function() {
+                generateRandomBarcode();
+            });
+            
+            // Function to generate a random 12-digit SKU
+            function generateRandomSku() {
+                let sku = "";
+                for (let i = 0; i < 12; i++) {
+                    sku += Math.floor(Math.random() * 10);
+                }
+                $("#SkuNumber").val(sku);
+            }
+            
+            // Function to generate a random 10-digit barcode
+            function generateRandomBarcode() {
+                let barcode = "";
+                for (let i = 0; i < 10; i++) {
+                    barcode += Math.floor(Math.random() * 10);
+                }
+                $("#BarcodeNumber").val(barcode);
+            }
+            
+            // Form validation
+            $("form").on("submit", function() {
+                // Ensure SKU and barcode are not empty
+                if (!$("#SkuNumber").val()) {
+                    generateRandomSku();
+                }
+                
+                if (!$("#BarcodeNumber").val()) {
+                    generateRandomBarcode();
+                }
+                
+                return true;
+            });
+        });
+    </script>
+}

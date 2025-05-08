@@ -1,0 +1,76 @@
+@model MyMvcProject.Models.Branch
+
+@{
+    ViewData["Title"] = "Delete Branch";
+}
+
+<div class="container mt-4">
+    <div class="card shadow border-danger">
+        <div class="card-header bg-danger text-white">
+            <h2>Confirm Delete</h2>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-danger">
+                <h4>Are you sure you want to delete this branch?</h4>
+                <p>This action cannot be undone.</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-4">Branch ID</dt>
+                        <dd class="col-sm-8">@Model.BranchId</dd>
+                        
+                        <dt class="col-sm-4">Branch Name</dt>
+                        <dd class="col-sm-8">@Model.BranchName</dd>
+                        
+                        <dt class="col-sm-4">Address</dt>
+                        <dd class="col-sm-8">@Model.BranchAddress</dd>
+                        
+                        <dt class="col-sm-4">Contact Number</dt>
+                        <dd class="col-sm-8">@Model.ContactNumber</dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-4">Locations</dt>
+                        <dd class="col-sm-8">
+                            @if (!string.IsNullOrEmpty(Model.LocationsString))
+                            {
+                                <div class="d-flex flex-wrap gap-1">
+                                    @foreach (var location in Model.LocationsString.Split(',', StringSplitOptions.RemoveEmptyEntries))
+                                    {
+                                        <span class="badge bg-info">@location</span>
+                                    }
+                                </div>
+                            }
+                        </dd>
+                        
+                        <dt class="col-sm-4">Status</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.IsActive)
+                            {
+                                <span class="badge bg-success">Active</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Inactive</span>
+                            }
+                        </dd>
+                        
+                        <dt class="col-sm-4">Created</dt>
+                        <dd class="col-sm-8">@Model.DateCreated.ToString("yyyy-MM-dd")</dd>
+                    </dl>
+                </div>
+            </div>
+            
+            <div class="mt-4 d-flex justify-content-between">
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

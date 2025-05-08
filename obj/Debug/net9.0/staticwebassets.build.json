@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+2sybddL89KtL2JKDNid2hUhHoRdNPEzZil1KSf5Qjk=",
+  "Hash": "PyGItuBWRwU8lt9KAOQPpOtqcA9MzuDB1XxvbNmBQrg=",
   "Source": "MyMvcProject",
   "BasePath": "_content/MyMvcProject",
   "Mode": "Default",
@@ -647,12 +647,12 @@
       "OriginalItemSpec": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map"
     },
     {
-      "Identity": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/gnvvb3vjk5-xtxxf3hu2r.gz",
+      "Identity": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/gnvvb3vjk5-1p7domzs1x.gz",
       "SourceId": "MyMvcProject",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/",
       "BasePath": "_content/MyMvcProject",
-      "RelativePath": "js/site#[.{fingerprint=xtxxf3hu2r}]?.js.gz",
+      "RelativePath": "js/site#[.{fingerprint=1p7domzs1x}]?.js.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -661,8 +661,8 @@
       "RelatedAsset": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/js/site.js",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "pmnrhqz0gl",
-      "Integrity": "YTkfXSHFEnZ6310TKacrOsSM7+9iBIEpAwW6DhmB2Rg=",
+      "Fingerprint": "q1nzalgmte",
+      "Integrity": "bp2IeSk2/T1rROtMhXPFCufpDHhI0uqd/ysQ7PCIJnA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/js/site.js"
@@ -771,6 +771,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css"
+    },
+    {
+      "Identity": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/kg7ggki0ku-87q1jbu990.gz",
+      "SourceId": "MyMvcProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/",
+      "BasePath": "_content/MyMvcProject",
+      "RelativePath": "js/hot-reload#[.{fingerprint=87q1jbu990}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/js/hot-reload.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "gum7pragqi",
+      "Integrity": "mOttMjkxfoHdieODz8QmhtEXTjY2lHZqp+kWd0wZoqI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/js/hot-reload.js"
     },
     {
       "Identity": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/kze4e8e3wj-87fc7y1x7t.gz",
@@ -1445,6 +1466,27 @@
       "OriginalItemSpec": "wwwroot/favicon.ico"
     },
     {
+      "Identity": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/js/hot-reload.js",
+      "SourceId": "MyMvcProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/",
+      "BasePath": "_content/MyMvcProject",
+      "RelativePath": "js/hot-reload#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "87q1jbu990",
+      "Integrity": "5FkqKV8Mc3Ui5q2yYml54gffVQEuP2iY6sMFav2QOP8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/hot-reload.js"
+    },
+    {
       "Identity": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/js/site.js",
       "SourceId": "MyMvcProject",
       "SourceType": "Discovered",
@@ -1459,8 +1501,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "xtxxf3hu2r",
-      "Integrity": "hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo=",
+      "Fingerprint": "1p7domzs1x",
+      "Integrity": "yzeiy165YIj5ILlPSLKMfhqdahPFvsYiR1JurGBEzQs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/js/site.js"
@@ -3324,13 +3366,13 @@
       ]
     },
     {
-      "Route": "js/site.js",
-      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/gnvvb3vjk5-xtxxf3hu2r.gz",
+      "Route": "js/hot-reload.87q1jbu990.js",
+      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/kg7ggki0ku-87q1jbu990.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.005263157895"
+          "Quality": "0.000717875090"
         }
       ],
       "ResponseHeaders": [
@@ -3340,15 +3382,176 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "189"
+          "Value": "1392"
         },
         {
           "Name": "ETag",
-          "Value": "\"YTkfXSHFEnZ6310TKacrOsSM7+9iBIEpAwW6DhmB2Rg=\""
+          "Value": "\"mOttMjkxfoHdieODz8QmhtEXTjY2lHZqp+kWd0wZoqI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 04 May 2025 13:58:23 GMT"
+          "Value": "Wed, 07 May 2025 19:31:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"5FkqKV8Mc3Ui5q2yYml54gffVQEuP2iY6sMFav2QOP8=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "87q1jbu990"
+        },
+        {
+          "Name": "label",
+          "Value": "js/hot-reload.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-5FkqKV8Mc3Ui5q2yYml54gffVQEuP2iY6sMFav2QOP8="
+        }
+      ]
+    },
+    {
+      "Route": "js/hot-reload.87q1jbu990.js",
+      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/js/hot-reload.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4884"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"5FkqKV8Mc3Ui5q2yYml54gffVQEuP2iY6sMFav2QOP8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 19:31:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "87q1jbu990"
+        },
+        {
+          "Name": "label",
+          "Value": "js/hot-reload.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-5FkqKV8Mc3Ui5q2yYml54gffVQEuP2iY6sMFav2QOP8="
+        }
+      ]
+    },
+    {
+      "Route": "js/hot-reload.87q1jbu990.js.gz",
+      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/kg7ggki0ku-87q1jbu990.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1392"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mOttMjkxfoHdieODz8QmhtEXTjY2lHZqp+kWd0wZoqI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 19:31:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "87q1jbu990"
+        },
+        {
+          "Name": "label",
+          "Value": "js/hot-reload.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mOttMjkxfoHdieODz8QmhtEXTjY2lHZqp+kWd0wZoqI="
+        }
+      ]
+    },
+    {
+      "Route": "js/hot-reload.js",
+      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/kg7ggki0ku-87q1jbu990.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000717875090"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1392"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mOttMjkxfoHdieODz8QmhtEXTjY2lHZqp+kWd0wZoqI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 19:31:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3368,18 +3571,163 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo=\""
+          "Value": "W/\"5FkqKV8Mc3Ui5q2yYml54gffVQEuP2iY6sMFav2QOP8=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo="
+          "Value": "sha256-5FkqKV8Mc3Ui5q2yYml54gffVQEuP2iY6sMFav2QOP8="
         }
       ]
     },
     {
-      "Route": "js/site.js",
+      "Route": "js/hot-reload.js",
+      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/js/hot-reload.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4884"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"5FkqKV8Mc3Ui5q2yYml54gffVQEuP2iY6sMFav2QOP8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 19:31:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-5FkqKV8Mc3Ui5q2yYml54gffVQEuP2iY6sMFav2QOP8="
+        }
+      ]
+    },
+    {
+      "Route": "js/hot-reload.js.gz",
+      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/kg7ggki0ku-87q1jbu990.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1392"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mOttMjkxfoHdieODz8QmhtEXTjY2lHZqp+kWd0wZoqI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 19:31:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mOttMjkxfoHdieODz8QmhtEXTjY2lHZqp+kWd0wZoqI="
+        }
+      ]
+    },
+    {
+      "Route": "js/site.1p7domzs1x.js",
+      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/gnvvb3vjk5-1p7domzs1x.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001912045889"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "522"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"bp2IeSk2/T1rROtMhXPFCufpDHhI0uqd/ysQ7PCIJnA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 11:41:42 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"yzeiy165YIj5ILlPSLKMfhqdahPFvsYiR1JurGBEzQs=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1p7domzs1x"
+        },
+        {
+          "Name": "label",
+          "Value": "js/site.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-yzeiy165YIj5ILlPSLKMfhqdahPFvsYiR1JurGBEzQs="
+        }
+      ]
+    },
+    {
+      "Route": "js/site.1p7domzs1x.js",
       "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/js/site.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -3389,7 +3737,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "231"
+          "Value": "963"
         },
         {
           "Name": "Content-Type",
@@ -3397,121 +3745,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo=\""
+          "Value": "\"yzeiy165YIj5ILlPSLKMfhqdahPFvsYiR1JurGBEzQs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 04 May 2025 13:58:23 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo="
-        }
-      ]
-    },
-    {
-      "Route": "js/site.js.gz",
-      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/gnvvb3vjk5-xtxxf3hu2r.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "189"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"YTkfXSHFEnZ6310TKacrOsSM7+9iBIEpAwW6DhmB2Rg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 04 May 2025 13:58:23 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-YTkfXSHFEnZ6310TKacrOsSM7+9iBIEpAwW6DhmB2Rg="
-        }
-      ]
-    },
-    {
-      "Route": "js/site.xtxxf3hu2r.js",
-      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/gnvvb3vjk5-xtxxf3hu2r.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.005263157895"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "189"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"YTkfXSHFEnZ6310TKacrOsSM7+9iBIEpAwW6DhmB2Rg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 04 May 2025 13:58:23 GMT"
+          "Value": "Wed, 07 May 2025 11:41:42 GMT"
         },
         {
           "Name": "Cache-Control",
           "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "xtxxf3hu2r"
+          "Value": "1p7domzs1x"
         },
         {
           "Name": "label",
@@ -3519,13 +3767,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo="
+          "Value": "sha256-yzeiy165YIj5ILlPSLKMfhqdahPFvsYiR1JurGBEzQs="
         }
       ]
     },
     {
-      "Route": "js/site.xtxxf3hu2r.js",
-      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/js/site.js",
+      "Route": "js/site.1p7domzs1x.js.gz",
+      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/gnvvb3vjk5-1p7domzs1x.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3534,7 +3782,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "231"
+          "Value": "522"
         },
         {
           "Name": "Content-Type",
@@ -3542,56 +3790,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo=\""
+          "Value": "\"bp2IeSk2/T1rROtMhXPFCufpDHhI0uqd/ysQ7PCIJnA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 04 May 2025 13:58:23 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "xtxxf3hu2r"
-        },
-        {
-          "Name": "label",
-          "Value": "js/site.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo="
-        }
-      ]
-    },
-    {
-      "Route": "js/site.xtxxf3hu2r.js.gz",
-      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/gnvvb3vjk5-xtxxf3hu2r.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "189"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"YTkfXSHFEnZ6310TKacrOsSM7+9iBIEpAwW6DhmB2Rg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 04 May 2025 13:58:23 GMT"
+          "Value": "Wed, 07 May 2025 11:41:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3609,7 +3812,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "xtxxf3hu2r"
+          "Value": "1p7domzs1x"
         },
         {
           "Name": "label",
@@ -3617,7 +3820,144 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-YTkfXSHFEnZ6310TKacrOsSM7+9iBIEpAwW6DhmB2Rg="
+          "Value": "sha256-bp2IeSk2/T1rROtMhXPFCufpDHhI0uqd/ysQ7PCIJnA="
+        }
+      ]
+    },
+    {
+      "Route": "js/site.js",
+      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/gnvvb3vjk5-1p7domzs1x.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001912045889"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "522"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"bp2IeSk2/T1rROtMhXPFCufpDHhI0uqd/ysQ7PCIJnA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 11:41:42 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"yzeiy165YIj5ILlPSLKMfhqdahPFvsYiR1JurGBEzQs=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yzeiy165YIj5ILlPSLKMfhqdahPFvsYiR1JurGBEzQs="
+        }
+      ]
+    },
+    {
+      "Route": "js/site.js",
+      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/wwwroot/js/site.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "963"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yzeiy165YIj5ILlPSLKMfhqdahPFvsYiR1JurGBEzQs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 11:41:42 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yzeiy165YIj5ILlPSLKMfhqdahPFvsYiR1JurGBEzQs="
+        }
+      ]
+    },
+    {
+      "Route": "js/site.js.gz",
+      "AssetFile": "/Users/reyjaguines/Projects/csharp/MyMvcProject/obj/Debug/net9.0/compressed/gnvvb3vjk5-1p7domzs1x.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "522"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"bp2IeSk2/T1rROtMhXPFCufpDHhI0uqd/ysQ7PCIJnA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 11:41:42 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-bp2IeSk2/T1rROtMhXPFCufpDHhI0uqd/ysQ7PCIJnA="
         }
       ]
     },

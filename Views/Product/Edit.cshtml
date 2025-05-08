@@ -1,0 +1,254 @@
+@model MyMvcProject.Models.Product
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<div class="container">
+    <h1 class="mb-4">Edit Product</h1>
+
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="DateCreated" />
+        
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">@Model.Name</h5>
+            </div>
+            <div class="card-body">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                
+                <div class="row">
+                    <div class="col-md-8">
+                        <!-- Product Information Section -->
+                        <div class="card mb-3">
+                            <div class="card-header bg-primary text-white">
+                                <h6 class="mb-0">Product Information</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="ProductId" class="control-label">Product ID</label>
+                                            <input asp-for="ProductId" class="form-control" readonly />
+                                            <span asp-validation-for="ProductId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label asp-for="Name" class="control-label">Product Name</label>
+                                            <input asp-for="Name" class="form-control" required />
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group mb-3">
+                                    <label asp-for="Description" class="control-label">Description</label>
+                                    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                                
+                                <div class="form-check mb-3">
+                                    <input asp-for="IsActive" class="form-check-input" />
+                                    <label asp-for="IsActive" class="form-check-label">Active</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Identification Section -->
+                        <div class="card mb-3">
+                            <div class="card-header bg-success text-white">
+                                <h6 class="mb-0">Product Identification</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="SkuNumber" class="control-label">SKU Number</label>
+                                            <input asp-for="SkuNumber" class="form-control" readonly/>
+                                            <span asp-validation-for="SkuNumber" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="ModelNumber" class="control-label">Model Number</label>
+                                            <input asp-for="ModelNumber" class="form-control" readonly />
+                                            <span asp-validation-for="ModelNumber" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="BarcodeNumber" class="control-label">Barcode Number</label>
+                                            <input asp-for="BarcodeNumber" class="form-control" readonly />
+                                            <span asp-validation-for="BarcodeNumber" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Branch Information Section -->
+                        <div class="card mb-3">
+                            <div class="card-header bg-warning text-dark">
+                                <h6 class="mb-0">Branch Information</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Branch</label>
+                                            <select class="form-select">
+                                                <option selected>Main Branch</option>
+                                                <option>Branch 1</option>
+                                                <option>Branch 2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Location</label>
+                                            <select class="form-select">
+                                                <option selected>Warehouse A</option>
+                                                <option>Warehouse B</option>
+                                                <option>Warehouse C</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Price & Tax Section -->
+                        <div class="card">
+                            <div class="card-header bg-danger text-white">
+                                <h6 class="mb-0">Price & Tax Information</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="Price" class="control-label">Base Price (SAR)</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">SAR</span>
+                                                <input asp-for="Price" class="form-control" type="number" step="0.01" min="0" />
+                                            </div>
+                                            <span asp-validation-for="Price" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Tax Rate (%)</label>
+                                            <input class="form-control" type="number" step="0.01" min="0" value="10" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="StockQuantity" class="control-label">Stock Quantity</label>
+                                            <input asp-for="StockQuantity" class="form-control" type="number" min="0" />
+                                            <span asp-validation-for="StockQuantity" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <!-- Image Section -->
+                        <div class="card mb-3">
+                            <div class="card-header bg-dark text-white">
+                                <h6 class="mb-0">Product Image</h6>
+                            </div>
+                            <div class="card-body">
+                                @* <div class="form-group">
+                                    <label asp-for="ImageUrl" class="control-label">Image URL</label>
+                                    <div class="input-group mb-3">
+                                        <input asp-for="ImageUrl" id="imageUrlInput" class="form-control" />
+                                        <button class="btn btn-outline-secondary" type="button" id="browseButton">Browse</button>
+                                    </div>
+                                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                                </div>
+                                 *@
+                                <div class="text-center">
+                                    <input type="file" id="imageUpload" style="display: none;" accept="image/*" />
+                                    <label for="imageUpload" style="cursor: pointer; display: block;">
+                                        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                                        {
+                                            <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid rounded mb-3" id="previewImage" />
+                                            <div class="text-center">
+                                                <small class="text-muted">Click image to change</small>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="text-center p-5 bg-light rounded mb-3" id="imageDropZone">
+                                                <i class="bi bi-cloud-arrow-up" style="font-size: 3rem;"></i>
+                                                <p class="mt-2">Click to upload image</p>
+                                            </div>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <!-- System Information Section -->
+                        <div class="card">
+                            <div class="card-header bg-secondary text-white">
+                                <h6 class="mb-0">System Information</h6>
+                            </div>
+                            <div class="card-body">
+                                <dl class="row mb-0">
+                                    <dt class="col-sm-5">Created By</dt>
+                                    <dd class="col-sm-7">System Administrator</dd>
+                                    
+                                    <dt class="col-sm-5">Date Created</dt>
+                                    <dd class="col-sm-7">@Model.DateCreated.ToString("yyyy-MM-dd HH:mm")</dd>
+                                    
+                                    @if (Model.DateUpdated.HasValue)
+                                    {
+                                        <dt class="col-sm-5">Last Updated</dt>
+                                        <dd class="col-sm-7">@Model.DateUpdated.Value.ToString("yyyy-MM-dd HH:mm")</dd>
+                                    }
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="/Product/Index" class="btn btn-secondary">Back to List</a>
+                    <div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <a href="/Product/Details/@Model.Id" class="btn btn-info">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Calculate price with tax when base price or tax rate changes
+            const priceInput = document.querySelector('input[asp-for="Price"]');
+            const taxRateInput = document.querySelector('input[value="10"]');
+            
+            if (priceInput && taxRateInput) {
+                const updatePriceWithTax = function() {
+                    const basePrice = parseFloat(priceInput.value) || 0;
+                    const taxRate = parseFloat(taxRateInput.value) || 0;
+                    const priceWithTax = basePrice * (1 + (taxRate / 100));
+                    
+                    // You could display this somewhere if needed
+                    console.log('Price with tax:', 'SAR ' + priceWithTax.toFixed(2));
+                };
+                
+                priceInput.addEventListener('input', updatePriceWithTax);
+                taxRateInput.addEventListener('input', updatePriceWithTax);
+            }
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

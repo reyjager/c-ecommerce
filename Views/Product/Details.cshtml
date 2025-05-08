@@ -1,0 +1,429 @@
+@model MyMvcProject.Models.Product
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<div class="container">
+    <h1 class="mb-4">Product Details</h1>
+
+    <div class="card mb-4">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">@Model.Name</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <!-- Product Information Section -->
+                    <div class="card mb-3">
+                        <div class="card-header bg-primary text-white">
+                            <h6 class="mb-0">Product Information</h6>
+                        </div>
+                        <div class="card-body">
+                            <dl class="row mb-0">
+                                <dt class="col-sm-4">Product ID</dt>
+                                <dd class="col-sm-8">@Model.ProductId</dd>
+                                
+                                <dt class="col-sm-4">Product Name</dt>
+                                <dd class="col-sm-8">@Model.Name</dd>
+                                
+                                <dt class="col-sm-4">Description</dt>
+                                <dd class="col-sm-8">@(string.IsNullOrEmpty(Model.Description) ? "No description available" : Model.Description)</dd>
+                                
+                                <dt class="col-sm-4">Status</dt>
+                                <dd class="col-sm-8">
+                                    <span class="badge @(Model.IsActive ? "bg-success" : "bg-danger")">
+                                        @(Model.IsActive ? "Active" : "Inactive")
+                                    </span>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    
+                    <!-- Identification Section -->
+                    <div class="card mb-3">
+                        <div class="card-header bg-success text-white">
+                            <h6 class="mb-0">Product Identification</h6>
+                        </div>
+                        <div class="card-body">
+                            <dl class="row mb-0">
+                                <dt class="col-sm-4">SKU Number</dt>
+                                <dd class="col-sm-8">@(string.IsNullOrEmpty(Model.SkuNumber) ? "Not specified" : Model.SkuNumber)</dd>
+                                
+                                <dt class="col-sm-4">Model Number</dt>
+                                <dd class="col-sm-8">@(string.IsNullOrEmpty(Model.ModelNumber) ? "Not specified" : Model.ModelNumber)</dd>
+                                
+                                <dt class="col-sm-4">Barcode</dt>
+                                <dd class="col-sm-8">@(string.IsNullOrEmpty(Model.BarcodeNumber) ? "Not specified" : Model.BarcodeNumber)</dd>
+                            </dl>
+                        </div>
+                    </div>
+                    
+                    <!-- Branch Information Section -->
+                    <div class="card mb-3">
+                        <div class="card-header bg-warning text-dark">
+                            <h6 class="mb-0">Branch Information</h6>
+                        </div>
+                        <div class="card-body">
+                            <dl class="row mb-0">
+                                <dt class="col-sm-4">Branch</dt>
+                                <dd class="col-sm-8">Main Branch</dd>
+                                
+                                <dt class="col-sm-4">Location</dt>
+                                <dd class="col-sm-8">Warehouse A</dd>
+                            </dl>
+                        </div>
+                    </div>
+                    
+                    <!-- Price & Tax Section -->
+                    <div class="card mb-3">
+                        <div class="card-header bg-danger text-white">
+                            <h6 class="mb-0">Price & Tax Information</h6>
+                        </div>
+                        <div class="card-body">
+                            <dl class="row mb-0">
+                                <dt class="col-sm-4">Base Price</dt>
+                                <dd class="col-sm-8">SAR @Model.Price.ToString("N2")</dd>
+                                @* <dd class="col-sm-8">@Model.Price.ToString("C")</dd> *@
+                                
+                                <dt class="col-sm-4">Tax Rate</dt>
+                                <dd class="col-sm-8">10%</dd>
+                                
+                                <dt class="col-sm-4">Price with Tax</dt>
+                                <dd class="col-sm-8">SAR @((Model.Price * 1.1m).ToString("N2"))</dd>
+                                @* <dd class="col-sm-8">@((Model.Price * 1.1m).ToString("C"))</dd> *@
+                                
+                                <dt class="col-sm-4">Stock Quantity</dt>
+                                <dd class="col-sm-8">@Model.StockQuantity</dd>
+                            </dl>
+                        </div>
+                    </div>
+                    
+                    <!-- System Information Section -->
+                    <div class="card">
+                        <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center" 
+                             role="button" 
+                             data-bs-toggle="collapse" 
+                             data-bs-target="#systemInfoCollapse" 
+                             aria-expanded="true" 
+                             aria-controls="systemInfoCollapse"
+                             style="cursor: pointer;">
+                            <h6 class="mb-0">System Information</h6>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="collapse show" id="systemInfoCollapse">
+                            <div class="card-body">
+                                <dl class="row mb-0">
+                                    <dt class="col-sm-4">Created By</dt>
+                                    <dd class="col-sm-8">System Administrator</dd>
+                                    
+                                    <dt class="col-sm-4">Date Created</dt>
+                                    <dd class="col-sm-8">
+                                        <span title="@Model.DateCreated.ToString("yyyy-MM-dd HH:mm:ss")">
+                                            @Model.DateCreated.ToString("yyyy-MM-dd HH:mm")
+                                        </span>
+                                    </dd>
+                                    
+                                    @if (Model.DateUpdated.HasValue)
+                                    {
+                                        <dt class="col-sm-4">Date Updated</dt>
+                                        <dd class="col-sm-8">
+                                            <span title="@Model.DateUpdated.Value.ToString("yyyy-MM-dd HH:mm:ss")">
+                                                @Model.DateUpdated.Value.ToString("yyyy-MM-dd HH:mm")
+                                            </span>
+                                        </dd>
+                                        
+                                        <dt class="col-sm-4">Updated By</dt>
+                                        <dd class="col-sm-8">System User</dd>
+                                    }
+                                </dl>
+                                
+                                <button class="btn btn-sm btn-outline-secondary mt-3" 
+                                        type="button" 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#timelineModal">
+                                    <i class="bi bi-clock-history"></i> View Change History
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                    {
+                        <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid rounded mb-3" />
+                    }
+                    else
+                    {
+                        <div class="text-center p-5 bg-light rounded mb-3">
+                            <i class="bi bi-image" style="font-size: 3rem;"></i>
+                            <p class="mt-2">No image available</p>
+                        </div>
+                    }
+                    
+                    <!-- QR Code placeholder -->
+<div class="card">
+    <div class="card-header bg-dark text-white">
+        <h6 class="mb-0">Product QR Code</h6>
+    </div>
+    <div class="card-body text-center">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=@Model.SkuNumber" 
+             alt="Product QR Code" class="img-fluid" />
+        <p class="mt-2 mb-0">Scan for quick access</p>
+    </div>
+</div>
+
+<!-- Barcode placeholder -->
+<div class="card mt-3">
+    <div class="card-header bg-dark text-white">
+        <h6 class="mb-0">Product Barcode</h6>
+    </div>
+    <div class="card-body text-center">
+        <img src="https://barcodeapi.org/api/code128/@(string.IsNullOrEmpty(Model.BarcodeNumber) ? "0000000000" : Model.BarcodeNumber)" 
+             alt="Product Barcode" class="img-fluid" />
+        <p class="mt-2 mb-0">@(string.IsNullOrEmpty(Model.BarcodeNumber) ? "No barcode available" : Model.BarcodeNumber)</p>
+    </div>
+</div>
+
+                </div>
+            </div>
+
+            
+            
+            <div class="d-flex justify-content-between mt-4">
+                <a href="/Product/Index" class="btn btn-secondary">Back to List</a>
+                <div>
+                    <a href="/Product/Edit/@Model.Id" class="btn btn-primary">Edit</a>
+                    <button type="button" class="btn btn-danger" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#deleteModal" 
+                            data-id="@Model.Id"
+                            data-name="@Model.Name">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete product <strong id="deleteProductName"></strong>?</p>
+                <p class="text-danger">This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form id="deleteForm" method="post" asp-controller="Product" asp-action="Delete">
+                    <input type="hidden" id="deleteProductId" name="id" value="" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Timeline Modal -->
+<div class="modal fade" id="timelineModal" tabindex="-1" aria-labelledby="timelineModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary text-white">
+                <h5 class="modal-title" id="timelineModalLabel">Product Change History</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-item-marker">
+                            <div class="timeline-item-marker-indicator bg-success"></div>
+                            <div class="timeline-item-marker-text">@Model.DateCreated.ToString("MMM dd")</div>
+                        </div>
+                        <div class="timeline-item-content">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold">Product Created</span>
+                                <span class="text-muted small">@Model.DateCreated.ToString("yyyy-MM-dd HH:mm:ss")</span>
+                            </div>
+                            <p>Product was created by System Administrator</p>
+                            <div class="text-muted small">Initial values set for all fields</div>
+                        </div>
+                    </div>
+                    
+                    @if (Model.DateUpdated.HasValue)
+                    {
+                        <div class="timeline-item">
+                            <div class="timeline-item-marker">
+                                <div class="timeline-item-marker-indicator bg-primary"></div>
+                                <div class="timeline-item-marker-text">@Model.DateUpdated.Value.ToString("MMM dd")</div>
+                            </div>
+                            <div class="timeline-item-content">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold">Product Updated</span>
+                                    <span class="text-muted small">@Model.DateUpdated.Value.ToString("yyyy-MM-dd HH:mm:ss")</span>
+                                </div>
+                                <p>Product was updated by System User</p>
+                                <div class="text-muted small">Fields modified: Name, Description</div>
+                            </div>
+                        </div>
+                    }
+                    
+                    <!-- Sample additional history entries -->
+                    <div class="timeline-item">
+                        <div class="timeline-item-marker">
+                            <div class="timeline-item-marker-indicator bg-warning"></div>
+                            <div class="timeline-item-marker-text">Sample</div>
+                        </div>
+                        <div class="timeline-item-content">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold">Price Changed</span>
+                                <span class="text-muted small">Sample Date</span>
+                            </div>
+                            <p>Price was updated by Finance Department</p>
+                            <div class="text-muted small">Old price: $10.00, New price: $12.50</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-item-marker">
+                            <div class="timeline-item-marker-indicator bg-info"></div>
+                            <div class="timeline-item-marker-text">Sample</div>
+                        </div>
+                        <div class="timeline-item-content">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold">Stock Updated</span>
+                                <span class="text-muted small">Sample Date</span>
+                            </div>
+                            <p>Inventory was updated by Warehouse Manager</p>
+                            <div class="text-muted small">Stock increased from 15 to 25 units</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div> 
+@* <div class="modal-content">
+
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete product <strong id="deleteProductName"></strong>?</p>
+                <p class="text-danger">This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form id="deleteForm" method="post" asp-controller="Product" asp-action="Delete">
+                    <input type="hidden" id="deleteProductId" name="id" value="" />" id="deleteProductId" name="id" value="" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> *@
+
+@section Scripts {
+    <script>
+        // Set up the delete modal with the correct product information
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteModal = document.getElementById('deleteModal');
+            if (deleteModal) {
+                deleteModal.addEventListener('show.bs.modal', function(event) {
+                    // Button that triggered the modal
+                    const button = event.relatedTarget;
+                    
+                    // Extract info from data attributes
+                    const productId = button.getAttribute('data-id');
+                    const productName = button.getAttribute('data-name');
+                    
+                    // Update the modal's content
+                    document.getElementById('deleteProductName').textContent = productName;
+                    document.getElementById('deleteProductId').value = productId;
+                    document.getElementById('deleteForm').action = '/Product/Delete/' + productId;
+                });
+            }
+            
+            // Add toggle functionality for collapsible sections
+            const collapsibleHeaders = document.querySelectorAll('[data-bs-toggle="collapse"]');
+            collapsibleHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        const target = document.querySelector(this.getAttribute('data-bs-target'));
+                        if (target.classList.contains('show')) {
+                            icon.classList.remove('bi-chevron-up');
+                            icon.classList.add('bi-chevron-down');
+                        } else {
+                            icon.classList.remove('bi-chevron-down');
+                            icon.classList.add('bi-chevron-up');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+<style>
+    /* Timeline styling */
+    .timeline {
+        position: relative;
+        padding-left: 1.5rem;
+    }
+    
+    .timeline:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0.75rem;
+        height: 100%;
+        border-left: 1px dashed #dee2e6;
+    }
+    
+    .timeline-item {
+        position: relative;
+        padding-bottom: 1.5rem;
+    }
+    
+    .timeline-item:last-child {
+        padding-bottom: 0;
+    }
+    
+    .timeline-item-marker {
+        position: absolute;
+        left: -1.5rem;
+        width: 1.5rem;
+    }
+    
+    .timeline-item-marker-text {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        font-size: 0.75rem;
+        margin-top: 0.25rem;
+        white-space: nowrap;
+    }
+    
+    .timeline-item-marker-indicator {
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 100%;
+        margin-left: 0.25rem;
+    }
+    
+    .timeline-item-content {
+        padding: 0 0 0 1.5rem;
+        border-left: 0.25rem solid #e9ecef;
+        padding-left: 1rem;
+    }
+</style>
